@@ -2,7 +2,7 @@
 
 These files support the exploration of the Marine Record (1878 – August 1902) and Marine Review (March 1890-October 1935) shipping buiness journals using a variety of digital scholarship tools and techniques. 
 
-*** This project is ongoing and some areas of work may be incomplete or missing entirely! ***
+*** This project has just begun and some areas of work may be incomplete or missing entirely! ***
 
 Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  
 
