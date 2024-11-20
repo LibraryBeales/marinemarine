@@ -1,14 +1,14 @@
-# Digital Scholarship Workshop Series - WORKSHOP TITLE
+# The Marine Record and The Marine Review: DH Exploratory Analysis
 
-These files support the WORKSHOP TITLE tutorial, which can be found here. https://librarybeales.github.io/WORKSHOPTITLE.  This tutorial is part of a the CWRU Digital Scholarship Workshop Series.  You can find a directory of the currently available tutorials here:  
+These files support the exploration of the Marine Record (1878 – August 1902) and Marine Review (March 1890-October 1935) shipping buiness journals using a variety of digital scholarship tools and techniques. 
 
+*** This project is ongoing and some areas of work may be incomplete or missing entirely! ***
 
-## Run the lesson locally
+Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  
 
-If you do not want use the cloud options for running the lessons, you can clone the repo and run it locally in an IDE like Visual Studio Code.  
+## Acknowledgments
 
-VS Code has an excellent tutorial for getting started with Python in VS Code.
-[Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
+The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications, and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  (https://images.maritimehistoryofthegreatlakes.ca)
 
 ## Authors
 
@@ -23,6 +23,3 @@ who participated in this project.
 This project is licensed under the [MIT License](https://github.com/LibraryBeales/WORKSHOP TITLE/blob/main/LICENSE)
 See the [LICENSE](https://github.com/LibraryBeales/WORKSHOP TITLE/blob/main/LICENSE) file for details.
 
-## Acknowledgments
-
-Thank you to all my colleagues and students at CWRU for their help in proofing and refining these materials.
