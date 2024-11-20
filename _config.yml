@@ -1,0 +1,9 @@
+theme: jekyll-theme-minimal
+remote_theme: pages-themes/slate@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+title: Digital Scholarship Workshop Series
+description: Directory of Digital Scholarship Workshop Resources 
+show_downloads: true # shows download links for the repository
+logo: # can easily be replaced with an institutional logo by uploading a new file
+google_analytics: [Your Google Analytics tracking ID]
