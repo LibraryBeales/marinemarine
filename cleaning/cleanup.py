@@ -2,7 +2,7 @@ import json
 import re
 
 # Load the JSON file
-with open('marine_record.json', 'r') as file:
+with open('D:\caserepos\marinemarine\jsons\marine_record.json', 'r') as file:
     data = json.load(file)
 
 # Function to clean the text
@@ -21,7 +21,6 @@ for record in data:
         record['fulltext'] = clean_text(record['fulltext'])
 
 # Save the cleaned data back to a new JSON file
-with open('cleaned_marine_record.json', 'w') as file:
+with open('\json\cleaned_marine_record.json', 'w') as file:
     json.dump(data, file, indent=4)
 
-print("Cleaning complete. The output is saved in 'cleaned_marine_record.json'.")

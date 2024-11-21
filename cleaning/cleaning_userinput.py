@@ -33,5 +33,3 @@ output_file = input("Enter the name for the output file (without extension): ") 
 # Save the cleaned data back to the new JSON file
 with open(output_file, 'w') as file:
     json.dump(data, file, indent=4)
-
-print(f"Cleaning complete. The output is saved as '{output_file}'.")
