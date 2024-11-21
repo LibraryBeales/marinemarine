@@ -1,7 +1,7 @@
 import json
 
 # Ask the user for the input file name
-input_file = input("Enter the name of the input JSON file (e.g., data.json): ")
+input_file = input("Enter the path to the input JSON file (e.g., data.json): ")
 
 # Read the input file
 try:
