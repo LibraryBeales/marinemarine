@@ -3,7 +3,7 @@ import re
 
 # Load the JSON file
 with open('D:\caserepos\marinemarine\jsons\marine_record.json', 'r') as file:
-    data = json.load(file)
+    json_data = json.load(file)
 
 # Function to clean the text
 def clean_text(text):
@@ -16,11 +16,11 @@ def clean_text(text):
     return text
 
 # Iterate over each record and clean the 'fulltext' field
-for record in data:
+for record in json_data:
     if 'fulltext' in record:
         record['fulltext'] = clean_text(record['fulltext'])
 
 # Save the cleaned data back to a new JSON file
 with open('\json\cleaned_marine_record.json', 'w') as file:
-    json.dump(data, file, indent=4)
+    json.dump(json_data, file, indent=4)
 

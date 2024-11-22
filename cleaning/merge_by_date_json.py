@@ -1,12 +1,12 @@
 import json
 
-# Ask the user for the input file name
+# Ask for the input file name
 input_file = input("Enter the path to the input JSON file (e.g., data.json): ")
 
 # Read the input file
 try:
     with open(input_file, "r") as f:
-        data = json.load(f)
+        json_data = json.load(f)
 except FileNotFoundError:
     print(f"Error: The file '{input_file}' was not found.")
     exit(1)
@@ -17,7 +17,7 @@ except json.JSONDecodeError:
 # Group by issue_date
 grouped_text = {}
 
-for entry in data:
+for entry in json_data:
     issue_date = entry['issue_date']
     fulltext = entry['fulltext']
     
@@ -33,7 +33,7 @@ for entry in data:
 # Create a list from the grouped data
 merged_data = list(grouped_text.values())
 
-# Ask the user for the output file name
+# Ask for the output file name
 output_file = input("Enter the name of the output JSON file (e.g., merged_issues.json): ")
 
 # Save to the output JSON file

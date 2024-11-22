@@ -36,6 +36,7 @@ for _, row in df.iterrows():
     for word, count in row['word_counts'].items():
         flattened_wordcount.append({'date': row['date'], 'word': word, 'count': count})
 
+#make it a panads DataFrame
 freq_df = pd.DataFrame(flattened_wordcount)
 
 # Ask the user for specific words to plot

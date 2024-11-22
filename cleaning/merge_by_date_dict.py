@@ -3,22 +3,22 @@ from collections import defaultdict
 import json
 
 with open('D:\caserepos\marinemarine\jsons\marine_record.json', 'r') as file:
-    data = json.load(file)
+    json_data = json.load(file)
 
 # Group by issue_date
 grouped_text = defaultdict(list)
 
-for entry in data:
+for entry in json_data:
     grouped_text[entry['issue_date']].append(entry['fulltext'])
 
 # Join fulltext fields for each date
-result = {
+fulltext_results = {
     issue_date: f'"{" ".join(fulltexts)}"'
     for issue_date, fulltexts in grouped_text.items()
 }
 
 # Print the result
-print(json.dumps(result, indent=4))
+print(json.dumps(fulltext_results, indent=4))
 
 
 '''

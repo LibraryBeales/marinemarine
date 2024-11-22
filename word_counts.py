@@ -6,7 +6,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 import nltk
 
-# Download stopwords if not already done
+# Download stopwords
 nltk.download('stopwords')
 
 # Define stopwords
