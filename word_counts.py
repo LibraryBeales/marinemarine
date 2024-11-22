@@ -18,7 +18,7 @@ with open("marine_record.json", "r") as file:
 
 # Prepare data: parse dates, tokenize text, and remove stopwords
 word_frequencies = []
-for entry in data:
+for entry in json_data:
     date = datetime.strptime(entry['date'], '%Y-%m-%d')  
     words = entry['text'].lower().split()  # Basic tokenization and convert to lowercase
     filtered_words = [word for word in words if word not in stop_words]
