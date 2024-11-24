@@ -1,4 +1,5 @@
 import re
+import csv
 
 html_file = input("Enter the file path: ")
 
@@ -10,4 +11,6 @@ placenames = re.findall(r'<option value="([^"]+)">', html)
 with open('places.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     for placename in placenames:
-        writer.writerow([placenames])
+        writer.writerow([placename])
+
+
