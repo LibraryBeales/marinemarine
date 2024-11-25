@@ -4,7 +4,7 @@ These files support the exploration of the Marine Record (1878 – August 1902) 
 
 For a more accessible presentation of results, visit (librarybeales.github.io/marinemarine)
 
-*** This project has just begun and some areas of work may be incomplete or missing entirely! ***
+*** This project has just begun and some areas of work may be incomplete! ***
 
 Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  
 
