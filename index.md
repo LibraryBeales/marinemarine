@@ -62,13 +62,11 @@ Instead of asking for user input, we can show the most menioned places from a li
 
 ## Sentiment Analysis
 
-Show the change in sentiment over time relevant to known and unknown events.
+Show the change in sentiment over time relevant to known and unknown events.  Compare sentiment changes in time of the two publications.
 
-##
+## Topic Modeling
 
-
-
-
+Compare the two publicaitons?
 
 
 ## Authors
