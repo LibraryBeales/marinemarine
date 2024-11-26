@@ -36,7 +36,7 @@ word_counts_by_date = {
 ```
 The nested dictionaries are then flattened into a list of dictionaries, converted to a pandas dataframe, and visualized using matplotlib.
 
-Our initial visualization shows a high level of granularity, but is a bit difficult to read.  It does reveal that there are a coupl years of wahat appears to be missing data.
+Our initial visualization shows a high level of granularity, but is a bit difficult to read.  It does reveal that there are a couple years of what appears to be missing data.
 ![coal, iron, oil, steel](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp5.png?raw=true)
 
 We can try to add a smoothing function that takes a rolling average of a month instead of showing the total for each issue of the Marine Record separately.  Now it is a bit easier to see the trends, but the mising data is a bit hard to identify.  I wonder why the mentions of iron dropped off so suddenly in 1892?
