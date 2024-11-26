@@ -10,7 +10,7 @@ with open(json_file, "r") as file:
     json_data = json.load(file)
 
 
-# Get user input for words of interest
+# Get user input
 user_input = input("Enter the words to visualize, separated by commas: ")
 selected_words = {word.strip().lower() for word in user_input.split(",")}
 
