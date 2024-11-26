@@ -33,21 +33,24 @@ for entry in json_data:
 import pandas as pd
 
 # Flatten the word counts into a list of dictionaries
-flattened_data = [
+flattened_wordcount = [
     {'date': date, 'word': word, 'count': count}
     for date, counts in word_counts_by_date.items()
     for word, count in counts.items()
 ]
 
 # Create a DataFrame
-freq_df = pd.DataFrame(flattened_data)
+wordcount_df = pd.DataFrame(flattened_wordcount)
 
 # Pivot the data for plotting
-pivot_df = freq_df.pivot(index='date', columns='word', values='count').fillna(0)
+pivot_selected_words = wordcount_df.pivot(index='date', columns='word', values='count').fillna(0)
+
+#set a rolling average window to smooth the curves.  30 = monthly 7 = weekly, etc.
+smoothing_selected_words = pivot_selected_words.rolling(window=30, min_periods=1).mean()
 
 # Plot the data
-if not pivot_df.empty:
-    pivot_df.plot(kind='line', figsize=(12, 6))
+if not smoothing_selected_words.empty:
+    smoothing_selected_words.plot(kind='line', figsize=(12, 6))
     plt.title('Selected Word Frequencies Over Time')
     plt.xlabel('Date')
     plt.ylabel('Frequency')
