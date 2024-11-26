@@ -56,10 +56,15 @@ TO DO:
 
 Also, I initially had the script count all the words in the corpus before selecting those the user was interested in visualizing.  This created memory problems...  That script is now saved as: `ERROR_words_over_time_input.py` if you are curious aobut how not to do this.  
 
+## Place Names Over Time
 
+Instead of asking for user input, we can show the most menioned places from a list of places in a csv file.
 
+## Sentiment Analysis
 
+Show the change in sentiment over time relevant to known and unknown events.
 
+##
 
 
 
