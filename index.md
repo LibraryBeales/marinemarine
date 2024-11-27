@@ -58,7 +58,11 @@ Also, I initially had the script count all the words in the corpus before select
 
 ## Place Names Over Time
 
-Instead of asking for user input, we can show the most menioned places from a list of places in a csv file.
+Instead of asking for user input, we can show the most menioned places from a list of places in a csv file.  This is very similar to the previosu words over time visualization, with input differences.  The csv of place names is currently just the name data.  However, more interesting and complex visualizations and EDA could be available using csv files with census data, industry data, and combiing that with the Marine Record and Marine Review corpora.
+
+![placename graph 1](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames2.png?raw=true)
+![placename graph 1](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames3.png?raw=true)
+
 
 ## Sentiment Analysis
 
