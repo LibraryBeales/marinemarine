@@ -12,8 +12,10 @@ nltk.download('stopwords')
 # Define stopwords
 stop_words = set(stopwords.words('english'))
 
+json_file = input("Enter the file path: ")
+
 # Load JSON data
-with open("marine_record.json", "r") as file:
+with open(json_file, "r") as file:
     json_data = json.load(file)
 
 # Prepare data: parse dates, tokenize text, and remove stopwords
@@ -40,13 +42,13 @@ for _, row in word_counts.iterrows():
 wordcount_pandas = pd.DataFrame(flattened_wordcount)
 
 #Plot top 5 words over time after removing stopwords.  Use nlargest(5) to adjust the number of words displayed on the graph.
-top_words = wordcount_pandas.groupby('word')['count'].sum().nlargest(5).index
+top_words = wordcount_pandas.groupby('word')['count'].sum().nlargest(10).index
 filtered_top_words = wordcount_pandas[wordcount_pandas['word'].isin(top_words)]
 
 # Pivot for plotting
 pivot_top_words = filtered_top_words.pivot(index='date', columns='word', values='count').fillna(0)
 
-# Plot
+#Plot
 pivot_top_words.plot(kind='line', figsize=(12, 6))
 plt.title('Most Frequent Words Over Time (Excluding Stopwords)')
 plt.xlabel('Date')
