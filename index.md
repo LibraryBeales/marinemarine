@@ -14,7 +14,11 @@ The extensive digitization and OCR work that has made this project possible was 
 
 ## Cleaning the Text
 
-These steps can very reliably be comined into one script.  The processes are separated out here because this project is intended for use in teaching introductory DH workshops so I am breaking it down into more explicit steps and saving each output as a new json file to demonstrate the process and outputs more explicitly.
+Cleaning and processing data can reveal interesting anomalies, so error handling should include reporting errors, not just ensuring the script doesn't crash. - Marine Record - 24 entiries of the Marine Review have no day in the date field, it appears to be a special issue about "The Greatest Storm in Lake History" Date format is missing the day.  1914-03-__  Need to edit these dates to make them complete.  Adding day 01.  
+
+```print(f"Error: The date '{issue_date}' in entry {entry} does not match the expected format '%Y%m%d'.")```
+
+These steps could reliably be combined into one script.  The processes are separated out here because this project is intended for use in teaching introductory DH workshops so I am breaking it down into more explicit steps and saving each output as a new json file to demonstrate the process and outputs more explicitly.
 
 Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage retursn, multiple spaces, and replace them all with a single space.  This script also converts all text to lowercase.  (Need to separate the `text.lower()` function for entity recognition.)  This script could use some more functions for cleaning various unicode characters, etc.
 
