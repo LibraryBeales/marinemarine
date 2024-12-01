@@ -18,12 +18,12 @@ def process_json(json_file):
     return monthly_counts
 
 monthly_counts_review = process_json(review_json)
-monthly_counts_record = process_json(record_json)
+#monthly_counts_record = process_json(record_json)
 
 plt.figure(figsize=(14, 8))
 plt.plot(monthly_counts_review.index, monthly_counts_review.values, label="Marine Review", color="blue")
-plt.plot(monthly_counts_record.index, monthly_counts_record.values, label="Marine Record", color="orange")
-plt.title("Word Count Over Time Comparing Marine Review asnd Marine Record")
+#plt.plot(monthly_counts_record.index, monthly_counts_record.values, label="Marine Record", color="orange")
+plt.title("Word Count Over Time - Marine Review")
 plt.xlabel("Date")
 plt.ylabel("Word Count")
 plt.grid(True)

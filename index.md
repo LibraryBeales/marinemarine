@@ -14,10 +14,6 @@ The extensive digitization and OCR work that has made this project possible was 
 
 ## Cleaning the Text
 
-Cleaning and processing data can reveal interesting anomalies, so error handling should include reporting errors, not just ensuring the script doesn't crash. - Marine Record - 24 entiries of the Marine Review have no day in the date field, it appears to be a special issue about "The Greatest Storm in Lake History" Date format is missing the day.  1914-03-__  Need to edit these dates to make them complete.  Adding day 01.  
-
-```print(f"Error: The date '{issue_date}' in entry {entry} does not match the expected format '%Y%m%d'.")```
-
 These steps could reliably be combined into one script.  The processes are separated out here because this project is intended for use in teaching introductory DH workshops so I am breaking it down into more explicit steps and saving each output as a new json file to demonstrate the process and outputs more explicitly.
 
 Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage retursn, multiple spaces, and replace them all with a single space.  This script also converts all text to lowercase.  (Need to separate the `text.lower()` function for entity recognition.)  This script could use some more functions for cleaning various unicode characters, etc.
@@ -27,6 +23,12 @@ Step 2:  Use `cleaning\date_format_userinput.py` to reformat the date field to Y
 Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at (https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
 
 *** Need to merge `full_text` on `issue` AND `issue_date` to avoid errors in the event that the Marine Record and the Marine Review were published on the same day.  Right now I am working on the two collections separately, but this will come up in the future. ***
+
+Cleaning and processing data can reveal interesting anomalies, so error handling should include reporting errors, not just ensuring the script doesn't crash.
+
+In the Marine Review 24 entries have no day in the date field, and when looking at the josn file, it appears to be a special issue about "The Greatest Storm in Lake History" The 'error' in the date format has shown us a part of the publication that may be of special interest.  As someone who is using the EDA of this collection to learn about Great Lakes Maritime history, the discovery of a special issue in the archive is certainly an exciting one. 
+
+```print(f"Error: The date '{issue_date}' in entry {entry} does not match the expected format '%Y%m%d'.")```
 
 ## Word Counts Over Time
 
@@ -46,10 +48,8 @@ Our initial visualization shows a high level of granularity, but is a bit diffic
 We can try to add a smoothing function that takes a rolling average of a month instead of showing the total for each issue of the Marine Record separately.  Now it is a bit easier to see the trends, but the mising data is a bit hard to identify.  I wonder why the mentions of iron dropped off so suddenly in 1892?
 ![coal, iron, oil, steel](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp4.png?raw=true)
 
-
 Divergence of the terms corn, wheat and grain could be due to a change in nomenclature at that time that groups all grains together.  It may represent just a change in the journal's vocabulary, and not an economic event.
 ![grain, corn, wheat graph](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp3.png?raw=true)
-
 
 TO DO: 
 - Add error checking so the script doesn't crash if there is a mising key in a json entry.
@@ -62,16 +62,40 @@ Also, I initially had the script count all the words in the corpus before select
 
 ## Place Names Over Time
 
-Instead of asking for user input, we can show the most menioned places from a list of places in a csv file.  This is very similar to the previosu words over time visualization, with input differences.  The csv of place names is currently just the name data.  However, more interesting and complex visualizations and EDA could be available using csv files with census data, industry data, and combiing that with the Marine Record and Marine Review corpora.
+Instead of asking for user input, we can show the most mentioned terms from a list of terms in a csv file.  This is very similar to the previous words over time visualization, with input differences.  The csv of place names is currently just the name data.  However, more interesting and complex visualizations and EDA using place names could be available using csv files with census data, industry data, etc., combining that with the Marine Record and Marine Review corpora.
 
-![placename graph 1](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames2.png?raw=true)
-![placename graph 1](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames3.png?raw=true)
+Here we can see place names move together and maintain relateive frequency.  This suggests a few things.  First, that the realtive importance of the Lake Erie ports didn't change much over the course of the Marine Record's publication.  Second, that the publication may include some regular tables of departures/arriveials/etc that constitute the majority of place names used in the publication, creating the consistent movement across terms.  
+![placename graph 2](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames2.png?raw=true)
+![placename graph 3](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames3.png?raw=true)
 
-NAmes move together, suggest some reports or tables that include ports as part of the data?  
+If we explore the Marine Review, we discover something very interesting.  A set of place names visualized over the course of the publicaiton shows a marked drop off in the frequency of all place names around 1908-1909.  If we then look at the overall word count, we can see a simlar drop at the same time across all words.  Diving into the raw json data a bit, we can see that publication went from weekly to monthly earlt in 1909, but word count per issue did not quadruple, and in many cases a monthly issue was similar in size to a weekly issue. 
+
+Our EDA visualizations have revealed a change in publishing schedule!
+
+![placename graph 5](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames5.png?raw=true)
+![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp6.png?raw=true)
+
+This is only very obvious in our visualization because we created a new date field that was just month and year, and grouped the word counts by month. 
+
+```
+placename_counts_df = pd.DataFrame(placename_counts)
+placename_counts_df['issue_date'] = pd.to_datetime(placename_counts_df['issue_date'])
+placename_counts_df['year_month'] = placename_counts_df['issue_date'].dt.to_period('M')
+placename_counts_df['year_month'] = placename_counts_df['year_month'].astype(str)
+
+monthly_counts = top_places_separated.groupby(['year_month', 'place'])['count'].sum().unstack(fill_value=0)
+```
+
+If we simply visualize by publication date, it looks as if the total word counts of the issues is steadily increasing, and the only clue to us that something has changed is the sudden decrease in density of the data points, which is not nearly as obvious at first glance.  
+
+![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp7.png?raw=true)
+
+
 
 ## Sentiment Analysis
 
 Show the change in sentiment over time relevant to known and unknown events.  Compare sentiment changes in time of the two publications.
+
 
 ## Topic Modeling
 
