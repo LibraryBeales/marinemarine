@@ -18,7 +18,7 @@ json_data_df = pd.DataFrame(json_data)
 #places = place_names['place_name'].tolist()
 
 #Load the CSV
-place_names = pd.read_csv("mapping/testplacenames.csv", header=None, names=["place_name"])
+place_names = pd.read_csv("mapping/portstest.csv", header=None, names=["place_name"])
 place_names['place_name'] = place_names['place_name'].str.strip()  # Remove extra spaces
 places = place_names['place_name'].tolist()
 
@@ -64,11 +64,11 @@ print("Rows of monthly_counts:", monthly_counts.head()) #debugging
 #window is rolling average of taht many months.
 monthly_counts_smoothed = monthly_counts.rolling(window=3, axis=0).mean()
 
-monthly_counts.plot(kind="bar", stacked=True, figsize=(14, 8))
-plt.title("Frequency of Top Place Names Over Time")
+monthly_counts.plot(kind="line", stacked=True, figsize=(14, 8))
+plt.title("Frequency of Ports Over Time in the Marine Review")
 plt.xlabel("Year-Month")
 plt.ylabel("Frequency")
-plt.legend(title="Place Names")
+plt.legend(title="Locations")
 plt.grid(True)
 plt.tight_layout()
 plt.show()

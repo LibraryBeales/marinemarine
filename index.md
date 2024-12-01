@@ -67,6 +67,7 @@ Instead of asking for user input, we can show the most menioned places from a li
 ![placename graph 1](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames2.png?raw=true)
 ![placename graph 1](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames3.png?raw=true)
 
+NAmes move together, suggest some reports or tables that include ports as part of the data?  
 
 ## Sentiment Analysis
 
