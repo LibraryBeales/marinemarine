@@ -75,7 +75,7 @@ Our EDA visualizations have revealed a change in publishing schedule!
 ![placename graph 5](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames5.png?raw=true)
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp6.png?raw=true)
 
-This is only very obvious in our visualization because we created a new date field that was just month and year, and grouped the word counts by month. 
+This is only very obvious in our visualization because we created a new date field that was just month and year, and grouped the word counts by month.  Here's that code:
 
 ```
 placename_counts_df = pd.DataFrame(placename_counts)
@@ -99,8 +99,33 @@ Show the change in sentiment over time relevant to known and unknown events.  Co
 
 ## Topic Modeling
 
-Compare the two publicaitons?
+Compare the two publications?
 
+This method is using gensim, and not the newer options like BERTopic and Top2Vec, need to explore options with transformers, and use pyLDAvis to improve EDA.
+
+https://freedium.cfd/https://medium.com/blend360/topic-modelling-a-comparison-between-lda-nmf-bertopic-and-top2vec-part-i-3c16372d51f0
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9120935/
+https://freedium.cfd/https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5
+
+Hilariously enough, I did LDA analysis on one entry, instead of all of them.  Pretty obvious after looking at the topics.
+```
+Extracted Topics:
+Topic 0:
+0.010*"new" + 0.009*"ship" + 0.008*"marine" + 0.007*"york" + 0.006*"building" + 0.006*"cleveland" + 0.005*"works" + 0.004*"000" + 0.004*"steel" + 0.004*"steam" + 0.004*"american" + 0.004*"chicago"
+Topic 1:
+0.007*"000" + 0.006*"ship" + 0.005*"new" + 0.005*"one" + 0.004*"tons" + 0.004*"two" + 0.003*"marine" + 0.003*"vessels" + 0.003*"water" + 0.003*"per" + 0.003*"would" + 0.003*"great"
+Topic 2:
+0.009*"new" + 0.007*"marine" + 0.007*"ship" + 0.006*"000" + 0.005*"york" + 0.005*"american" + 0.004*"tons" + 0.004*"ships" + 0.003*"shipping" + 0.003*"review" + 0.003*"vessels" + 0.003*"feet"
+Topic 3:
+0.005*"new" + 0.004*"000" + 0.004*"ship" + 0.003*"marine" + 0.003*"one" + 0.003*"york" + 0.003*"building" + 0.002*"vessels" + 0.002*"steam" + 0.002*"vessel" + 0.002*"steel" + 0.002*"two"
+Topic 4:
+0.010*"new" + 0.008*"marine" + 0.006*"york" + 0.005*"ship" + 0.004*"ships" + 0.004*"oil" + 0.004*"city" + 0.004*"per" + 0.004*"american" + 0.004*"one" + 0.004*"feet" + 0.003*"000"
+Topic 5:
+0.007*"marine" + 0.007*"cleveland" + 0.006*"new" + 0.006*"000" + 0.005*"ship" + 0.005*"steam" + 0.005*"lake" + 0.004*"one" + 0.004*"vessels" + 0.004*"york" + 0.004*"chicago" + 0.004*"iron"
+```
+## Entity Recognition
+
+SpaCy
 
 ## Authors
 
