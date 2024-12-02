@@ -99,15 +99,16 @@ Show the change in sentiment over time relevant to known and unknown events.  Co
 
 ## Topic Modeling
 
-This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis clearly shows some clustering that indicates a lack of differentiation, one topic in these journals certainly, but also problems with cleaning the text, numerals, adding stop words that characterize the domain, etc. etc.   Lots to be done here.
+This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis shows some clustering that may indicate a lack of effective modeling.  The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more interesting and diverse?, but I'm much more can be done to improve this as well, I'm sure.  
 
+The Marine Record and Marine Review are both narrow in scope, so more time tuning and training will likely be required for effective modeling. But there are also obvious problems with cleaning the text, numerals, adding stop words that characterize the domain, etc. etc.   
+
+Lots to be done here.
+
+Gensim LDA Visualization
 https://rdavidbeales.com/lda_visualization.html
 
-
-https://freedium.cfd/https://medium.com/blend360/topic-modelling-a-comparison-between-lda-nmf-bertopic-and-top2vec-part-i-3c16372d51f0
-https://pmc.ncbi.nlm.nih.gov/articles/PMC9120935/
-https://freedium.cfd/https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5
-
+Gensim LDA Topics
 ```
 Extracted Topics:
 Topic 0:
@@ -123,6 +124,18 @@ Topic 4:
 Topic 5:
 0.007*"000" + 0.005*"ship" + 0.005*"one" + 0.005*"new" + 0.005*"tons" + 0.004*"two" + 0.004*"vessels" + 0.003*"would" + 0.003*"water" + 0.003*"per" + 0.003*"vessel" + 0.003*"made"
 ```
+
+BERTopic Visualization
+
+
+BERTopic Topics (I let the package determine the number of topics.  For LDA, I chose 6.)
+
+
+Some notes...
+https://freedium.cfd/https://medium.com/blend360/topic-modelling-a-comparison-between-lda-nmf-bertopic-and-top2vec-part-i-3c16372d51f0
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9120935/
+https://freedium.cfd/https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5
+
 ## Entity Recognition
 
 SpaCy
