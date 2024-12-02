@@ -16,6 +16,10 @@ Step 2:  Use `cleaning\date_format_userinput.py` to reformat the date field to Y
 
 Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at (https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
 
+
+*** 24 entires of the Marine Review have no day in the date field, it appears to be a special issue about "The Greatest Storm in Lake History" 1914-03-__  Need to edit these dates to make them complete.  Adding day 01. ***  
+
+
 *** Need to merge `full_text` on `issue` AND `issue_date` to avoid errors in the event that the Marine Record and the Marine Review were published on the same day.  Right now I am working on the two collections separately, but this will come up in the future. ***
 
 

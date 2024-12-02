@@ -3,7 +3,8 @@ import re
 
 # Function to clean the text
 def clean_text(text):
-    # Convert to lowercase
+    if text is None:
+        return ""
     text = text.lower()
     # Remove line breaks and carriage returns, replacing them with a space
     text = re.sub(r'[\r\n]', ' ', text)
