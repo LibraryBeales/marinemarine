@@ -26,7 +26,7 @@ Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has
 
 Cleaning and processing data can reveal interesting anomalies, so error handling should include reporting errors, not just ensuring the script doesn't crash.
 
-In the Marine Review 24 entries have no day in the date field, and when looking at the josn file, it appears to be a special issue about "The Greatest Storm in Lake History" The 'error' in the date format has shown us a part of the publication that may be of special interest.  As someone who is using the EDA of this collection to learn about Great Lakes Maritime history, the discovery of a special issue in the archive is certainly an exciting one. 
+In the Marine Review, 24 entries in March 1914 have no day in the date field, and when looking at the josn file, it appears to be a special issue (actually called a supplement) about "The Greatest Storm in Lake History" The 'error' in the date format has shown us a part of the publication that may be of special interest.  As someone who is using the EDA of this collection to learn about Great Lakes Maritime history, the discovery of a special issue in the archive is certainly an exciting one. 
 
 ```print(f"Error: The date '{issue_date}' in entry {entry} does not match the expected format '%Y%m%d'.")```
 
@@ -99,29 +99,29 @@ Show the change in sentiment over time relevant to known and unknown events.  Co
 
 ## Topic Modeling
 
-Compare the two publications?
+This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis clearly shows some clustering that indicates a lack of differentiation, one topic in these journals certainly, but also problems with cleaning the text, numerals, adding stop words that characterize the domain, etc. etc.   Lots to be done here.
 
-This method is using gensim, and not the newer options like BERTopic and Top2Vec, need to explore options with transformers, and use pyLDAvis to improve EDA.
+https://rdavidbeales.com/lda_visualization.html
+
 
 https://freedium.cfd/https://medium.com/blend360/topic-modelling-a-comparison-between-lda-nmf-bertopic-and-top2vec-part-i-3c16372d51f0
 https://pmc.ncbi.nlm.nih.gov/articles/PMC9120935/
 https://freedium.cfd/https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5
 
-Hilariously enough, I did LDA analysis on one entry, instead of all of them.  Pretty obvious after looking at the topics.
 ```
 Extracted Topics:
 Topic 0:
-0.010*"new" + 0.009*"ship" + 0.008*"marine" + 0.007*"york" + 0.006*"building" + 0.006*"cleveland" + 0.005*"works" + 0.004*"000" + 0.004*"steel" + 0.004*"steam" + 0.004*"american" + 0.004*"chicago"
+0.009*"new" + 0.008*"cleveland" + 0.008*"marine" + 0.008*"ship" + 0.006*"york" + 0.006*"building" + 0.005*"works" + 0.004*"000" + 0.004*"steam" + 0.004*"chicago" + 0.004*"iron" + 0.004*"steel"
 Topic 1:
-0.007*"000" + 0.006*"ship" + 0.005*"new" + 0.005*"one" + 0.004*"tons" + 0.004*"two" + 0.003*"marine" + 0.003*"vessels" + 0.003*"water" + 0.003*"per" + 0.003*"would" + 0.003*"great"
+0.014*"cont" + 0.003*"sch" + 0.002*"cargo" + 0.002*"req" + 0.002*"eee" + 0.002*"coal" + 0.002*"14001" + 0.002*"251" + 0.001*"000" + 0.001*"new" + 0.001*"410" + 0.001*"1919"
 Topic 2:
-0.009*"new" + 0.007*"marine" + 0.007*"ship" + 0.006*"000" + 0.005*"york" + 0.005*"american" + 0.004*"tons" + 0.004*"ships" + 0.003*"shipping" + 0.003*"review" + 0.003*"vessels" + 0.003*"feet"
+0.001*"ship" + 0.001*"new" + 0.001*"marine" + 0.001*"york" + 0.001*"cleveland" + 0.001*"000" + 0.000*"review" + 0.000*"feet" + 0.000*"water" + 0.000*"steam" + 0.000*"one" + 0.000*"steel"
 Topic 3:
-0.005*"new" + 0.004*"000" + 0.004*"ship" + 0.003*"marine" + 0.003*"one" + 0.003*"york" + 0.003*"building" + 0.002*"vessels" + 0.002*"steam" + 0.002*"vessel" + 0.002*"steel" + 0.002*"two"
+0.007*"marine" + 0.007*"feet" + 0.007*"lake" + 0.006*"000" + 0.006*"cleveland" + 0.005*"steam" + 0.005*"new" + 0.005*"vessels" + 0.004*"vessel" + 0.004*"capt" + 0.004*"company" + 0.004*"one"
 Topic 4:
-0.010*"new" + 0.008*"marine" + 0.006*"york" + 0.005*"ship" + 0.004*"ships" + 0.004*"oil" + 0.004*"city" + 0.004*"per" + 0.004*"american" + 0.004*"one" + 0.004*"feet" + 0.003*"000"
+0.010*"new" + 0.008*"marine" + 0.006*"york" + 0.005*"ship" + 0.004*"ships" + 0.004*"american" + 0.004*"oil" + 0.004*"000" + 0.004*"feet" + 0.004*"city" + 0.003*"per" + 0.003*"one"
 Topic 5:
-0.007*"marine" + 0.007*"cleveland" + 0.006*"new" + 0.006*"000" + 0.005*"ship" + 0.005*"steam" + 0.005*"lake" + 0.004*"one" + 0.004*"vessels" + 0.004*"york" + 0.004*"chicago" + 0.004*"iron"
+0.007*"000" + 0.005*"ship" + 0.005*"one" + 0.005*"new" + 0.005*"tons" + 0.004*"two" + 0.004*"vessels" + 0.003*"would" + 0.003*"water" + 0.003*"per" + 0.003*"vessel" + 0.003*"made"
 ```
 ## Entity Recognition
 
