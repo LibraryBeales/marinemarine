@@ -99,14 +99,15 @@ Show the change in sentiment over time relevant to known and unknown events.  Co
 
 ## Topic Modeling
 
-This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis shows some clustering that may indicate a lack of effective modeling.  The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more interesting and diverse?, but I'm much more can be done to improve this as well, I'm sure.  
+This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis shows some clustering that may indicate a lack of effective modeling.  The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
 
-The Marine Record and Marine Review are both narrow in scope, so more time tuning and training will likely be required for effective modeling. But there are also obvious problems with cleaning the text, numerals, adding stop words that characterize the domain, etc. etc.   
+The Marine Record and Marine Review are both narrow in scope, so more time tuning and training will likely be required for effective modeling. But there are also obvious problems with cleaning the text, numerals, adding stop words that characterize the domain, etc., etc.   Visualizing the relevance of topics over time will certainly be more interseting in terms of exploring the history of this publication.
 
 Lots to be done here.
 
 Gensim LDA Visualization
-https://rdavidbeales.com/lda_visualization.html
+
+(https://rdavidbeales.com/lda_visualization.html)
 
 Gensim LDA Topics
 ```
@@ -127,9 +128,45 @@ Topic 5:
 
 BERTopic Visualization
 
+(https://rdavidbeales.com/bertopic_topics.html)
 
 BERTopic Topics (I let the package determine the number of topics.  For LDA, I chose 6.)
-
+```Topics:
+Topic 0: 0_co_new_ship_marine
+Topic 1: 1_co_cleveland_ee_ship
+Topic 2: 2_000_tons_one_lake
+Topic 3: 3_000_new_ships_tons
+Topic 4: 4_co_new_cleveland_ship
+Topic 5: 5_000_co_new_marine
+Topic 6: 6_co_new_york_marine
+Topic 7: 7_steam_cleveland_lake_feet
+Topic 8: 8_000_str_one_co
+Topic 9: 9_marine_lake_co_cleveland
+Topic 10: 10_ft_000_tons_two
+Topic 11: 11_000_co_new_marine
+Topic 12: 12_marine_capt_lake_cleveland
+Topic 13: 13_new_co_marine_ships
+Topic 14: 14_000_tons_ft_one
+Topic 15: 15_co_marine_cleveland_new
+Topic 16: 16_capt_company_marine_lake
+Topic 17: 17_marine_lake_000_vessel
+Topic 18: 18_co_feet_new_marine
+Topic 19: 19_lake_cleveland_marine_new
+Topic 20: 20_lake_marine_steam_st
+Topic 21: 21_feet_lake_000_cleveland
+Topic 22: 22_co_new_marine_york
+Topic 23: 23_ft_one_ee_two
+Topic 24: 24_co_cleveland_ee_new
+Topic 25: 25_co_new_oil_york
+Topic 26: 26_marine_co_st_capt
+Topic 27: 27_co_ee_ship_cleveland
+Topic 28: 28_marine_lake_cleveland_steam
+Topic 29: 29_co_cleveland_new_feet
+Topic 30: 30_feet_lake_000_cleveland
+Topic 31: 31_000_co_lake_cleveland
+Topic 32: 32_co_new_york_city
+Topic 33: 33_feet_company_marine_lake
+```
 
 Some notes...
 https://freedium.cfd/https://medium.com/blend360/topic-modelling-a-comparison-between-lda-nmf-bertopic-and-top2vec-part-i-3c16372d51f0
