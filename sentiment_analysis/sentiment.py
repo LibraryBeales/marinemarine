@@ -11,7 +11,7 @@ As with all the other ML things here, I will ahve to spend some time training...
 '''
 
 import pandas as pd
-from pattern.en import sentiment
+from pattern3.text.en import sentiment
 import matplotlib.pyplot as plt
 import json
 
@@ -44,7 +44,6 @@ monthly_data = json_data.groupby('month').agg(
 
 # 
 monthly_data['month'] = monthly_data['month'].dt.to_timestamp()
-
 
 plt.figure(figsize=(14, 8))
 
