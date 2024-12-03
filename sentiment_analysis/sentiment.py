@@ -8,6 +8,9 @@ Pattern package has opinion and fact detection- subjectivity over time
 Locate local resources to share this with and interpret visualizations, starting with Walter Lewis.
 As with all the other ML things here, I will ahve to spend some time training...
 
+Identify candidates for filtering date ranges to see more detailed cahnges.
+MOdify subjectivity threshold due to businesslike content of the corpus
+
 '''
 
 import pandas as pd
