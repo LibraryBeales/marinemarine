@@ -95,6 +95,8 @@ If we simply visualize by publication date, it looks as if the total word counts
 
 Show the change in sentiment over time relevant to known and unknown events.  Compare sentiment changes in time of the two publications.
 
+UNIX timestamps...  "issue_date":-2398032000000
+
 
 ## Topic Modeling
 
