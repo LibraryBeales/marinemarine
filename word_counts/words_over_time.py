@@ -5,12 +5,9 @@ from collections import defaultdict, Counter
 
 json_file = input("Enter the file path: ")
 
-# Load JSON data
 with open(json_file, "r") as file:
     json_data = json.load(file)
 
-
-# Get user input
 user_input = input("Enter the words to visualize, separated by commas: ")
 selected_words = {word.strip().lower() for word in user_input.split(",")}
 
@@ -39,7 +36,6 @@ flattened_wordcount = [
     for word, count in counts.items()
 ]
 
-# Create a DataFrame
 wordcount_df = pd.DataFrame(flattened_wordcount)
 
 # Pivot the data for plotting

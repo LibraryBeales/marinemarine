@@ -1,16 +1,15 @@
 # The Marine Record and The Marine Review: DH Exploratory Analysis
 
-These files support the exploration of the Marine Record (1878 – August 1902) and Marine Review (March 1890-October 1935) shipping buiness journals using a variety of digital scholarship tools and techniques. 
+These files support the exploration of the Marine Record (1878 – August 1902, Total words, excluding stopwords: 10648342) and Marine Review (March 1890-October 1935, 
+Total words, excluding stopwords: 26894616) shipping buiness journals using a variety of digital scholarship tools and techniques. 
 
-For a more accessible presentation of results, visit (librarybeales.github.io/marinemarine)
+This project has just begun!  I am in the public brainstorming stage.  Some areas of work may be incomplete, confusing, or downright wrong!  These exploration are meant to provide direction for close reading, questions to ask, details to explore.  I am generally unfamiliar with the corpus and the maritime history of the Great Lakes.  This is meant to be a process of quickly iterating through methods of distant reading to find areas of interest, questions of significance, intriguing details, etc.  
 
-*** This project has just begun and some areas of work may be incomplete! ***
-
-Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  
+Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  Effective organization is an ongoing process as well.
 
 ## Acknowledgments
 
-The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications, and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  (https://images.maritimehistoryofthegreatlakes.ca)
+The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)
 
 ## Cleaning the Text
 
@@ -20,7 +19,7 @@ Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage ret
 
 Step 2:  Use `cleaning\date_format_userinput.py` to reformat the date field to YYYY-MM-DD.
 
-Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at (https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
+Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
 
 *** Need to merge `full_text` on `issue` AND `issue_date` to avoid errors in the event that the Marine Record and the Marine Review were published on the same day.  Right now I am working on the two collections separately, but this will come up in the future. ***
 
@@ -40,15 +39,15 @@ word_counts_by_date = {
     datetime(1883, 3, 31): {'oil': 1, 'steam': 2},
 }
 ```
-The nested dictionaries are then flattened into a list of dictionaries, converted to a pandas dataframe, and visualized using matplotlib.
+The nested dictionaries are then flattened into a list of dictionaries, converted to a pandas dataframe, and visualized using matplotlib.  Updating these visualization to plotly will improve aesthtics, control, and provide interactivity options, but for now `plt()` will have to suffice.
 
-Our initial visualization shows a high level of granularity, but is a bit difficult to read.  It does reveal that there are a couple years of what appears to be missing data.
+Our initial visualization shows a high level of granularity, but is a bit difficult to read.  It does reveal that there are a couple years of what appears to be missing data.  I chose several commodities that I thought might be relevant to these publications in this time period. 
 ![coal, iron, oil, steel](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp5.png?raw=true)
 
-We can try to add a smoothing function that takes a rolling average of a month instead of showing the total for each issue of the Marine Record separately.  Now it is a bit easier to see the trends, but the mising data is a bit hard to identify.  I wonder why the mentions of iron dropped off so suddenly in 1892?
+We can try to add a smoothing function that takes a rolling average of a month instead of showing the total for each issue of the Marine Record separately.  Now it is a bit easier to see the trends, but the missing data is a bit harder to identify.  I wonder why the mentions of iron dropped off in 1892.  Did shipping become more diversified as other commodities rose in importance?  Or was the shipment of iron less noteworthy simply because little was changing?  Did the Marine Record begin covering mostly iron shipping and diversify its attention? 
 ![coal, iron, oil, steel](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp4.png?raw=true)
 
-Divergence of the terms corn, wheat and grain could be due to a change in nomenclature at that time that groups all grains together.  It may represent just a change in the journal's vocabulary, and not an economic event.
+Divergence of the terms corn, wheat and grain at the end of the 19th century could be representative of a grwoth in grain shipping, or it could be due to a change in nomenclature at that time that groups corn, wheat and others together under one term.  It may represent just a change in the journal's vocabulary, and not an economic event.  These are the fun kinds of questions that can be quickly found during exploratory analysis of a text corpus.
 ![grain, corn, wheat graph](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp3.png?raw=true)
 
 TO DO: 
@@ -107,7 +106,7 @@ Lots to be done here.
 
 Gensim LDA Visualization
 
-(https://rdavidbeales.com/lda_visualization.html)
+[https://rdavidbeales.com/lda_visualization.html](https://rdavidbeales.com/lda_visualization.html)
 
 Gensim LDA Topics
 ```
@@ -128,7 +127,7 @@ Topic 5:
 
 BERTopic Visualization
 
-(https://rdavidbeales.com/bertopic_topics.html)
+[https://rdavidbeales.com/bertopic_topics.html](https://rdavidbeales.com/bertopic_topics.html)
 
 BERTopic Topics (I let the package determine the number of topics.  For LDA, I chose 6.)
 ```Topics:

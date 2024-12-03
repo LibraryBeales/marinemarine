@@ -1,0 +1,2 @@
+Total words in Marine Record, excluding stopwords: 10648342
+Total words in Marine Review, excluding stopwords: 26894616

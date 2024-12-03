@@ -2,7 +2,7 @@
 
 These files support the exploration of the Marine Record (1878 – August 1902) and Marine Review (March 1890-October 1935) shipping buiness journals using a variety of digital scholarship tools and techniques. 
 
-For a more accessible presentation of results, visit (librarybeales.github.io/marinemarine)
+For a more accessible presentation of results, visit [librarybeales.github.io/marinemarine](librarybeales.github.io/marinemarine)
 
 *** This project has just begun and some areas of work may be incomplete or missing entirely! ***
 
@@ -14,7 +14,7 @@ Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage ret
 
 Step 2:  Use `cleaning\date_format_userinput.py` to reformat the date field to YYYY-MM-DD.
 
-Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at (https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
+Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at https://images.maritimehistoryofthegreatlakes.ca where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
 
 
 *** 24 entires of the Marine Review have no day in the date field, it appears to be a special issue about "The Greatest Storm in Lake History" 1914-03-__  Need to edit these dates to make them complete.  Adding day 01. ***  
