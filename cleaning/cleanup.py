@@ -5,10 +5,16 @@ import re
 with open('D:\caserepos\marinemarine\jsons\marine_record.json', 'r') as file:
     json_data = json.load(file)
 
-# Function to clean the text
 def clean_text(text):
-    # Convert to lowercase
-    text = text.lower()
+    
+    text=text.lower()
+    
+    #remove tags - not needed, this is normally used for content scraped from web.
+    #text=re.sub("</?.*?>"," <> ",text)
+    
+    # remove special characters and digits
+    text=re.sub("(\\d|\\W)+"," ",text)
+    
     # Remove line breaks and carriage returns, replacing them with a space
     text = re.sub(r'[\r\n]', ' ', text)
     # Replace multiple spaces with a single space
