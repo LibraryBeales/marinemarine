@@ -89,16 +89,18 @@ If we simply visualize by publication date, it looks as if the total word counts
 
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp7.png?raw=true)
 
-
-
 ## Sentiment Analysis
 
 Show the change in sentiment over time relevant to known and unknown events.  Compare sentiment changes in time of the two publications.
 
 UNIX timestamps...  "issue_date":-2398032000000
+Editing the tree.py file of the pattern package?
 
+![pattern package sentiment analysis](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
 
-## Topic Modeling
+The pattern package has a host of other capabilites, including web scraping and API interactions, text processing, machine learning tools for text classification, training and evaluating models, data visualization and network analysis.  It could be interesting to build a pipeline for EDA of text corpora using just this package and its data structures.
+
+## Topic Modeling and tf-idf
 
 This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis shows some clustering that may indicate a lack of effective modeling.  The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
 
@@ -169,14 +171,11 @@ Topic 32: 32_co_new_york_city
 Topic 33: 33_feet_company_marine_lake
 ```
 
-Some notes...
-https://freedium.cfd/https://medium.com/blend360/topic-modelling-a-comparison-between-lda-nmf-bertopic-and-top2vec-part-i-3c16372d51f0
-https://pmc.ncbi.nlm.nih.gov/articles/PMC9120935/
-https://freedium.cfd/https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5
+
 
 ## Entity Recognition
 
-SpaCy
+Holding spoace for something using SpaCy.
 
 ## Authors
 
