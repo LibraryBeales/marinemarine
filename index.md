@@ -89,6 +89,8 @@ If we simply visualize by publication date, it looks as if the total word counts
 
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp7.png?raw=true)
 
+## Extracting Keywords
+
 
 
 ## Sentiment Analysis
@@ -96,7 +98,11 @@ If we simply visualize by publication date, it looks as if the total word counts
 Show the change in sentiment over time relevant to known and unknown events.  Compare sentiment changes in time of the two publications.
 
 UNIX timestamps...  "issue_date":-2398032000000
+Editing the tree.py file of the pattern package?
 
+![pattern package sentiment analysis](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
+
+The pattern package has a host of other capabilites, including web scraping and API interactions, text processing, machine learning tools for text classification, training and evaluating models, data visualization and network analysis.  It could be interesting to build a pipeline for EDA of text corpora using just this package and its data structures.
 
 ## Topic Modeling
 
