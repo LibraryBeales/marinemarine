@@ -1,20 +1,17 @@
 import pandas as pd
 import json
 
-json_file = input("Enter the path to the JSON file: ")
+json_file = input("Enter the path to JSON file: ")
 json_data = pd.read_json(json_file, lines=True)
 
-# Find the minimum polarity value
-min_polarity = json_data['polarity'].min()
+sorted_data = json_data.sort_values(by='polarity', ascending=True)
 
-# Filter rows where polarity equals the minimum value
-lowest_sent = json_data[json_data['polarity'] == min_polarity]
+lowest_sent = sorted_data.head(10)
 
-# Save the filtered entries to a new JSON file
-output_file = input("Enter the name of the output : ")
+output_file = input("Enter name of output file: ")
 if not output_file.endswith('.json'):
     output_file += '.json'
 
 lowest_sent.to_json(output_file, orient='records', lines=True)
 
-print(f"Saved to {output_file}")
+print(f"Ten lowest sentiment entries saved to {output_file}")

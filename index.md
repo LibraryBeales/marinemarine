@@ -7,6 +7,8 @@ This project has just begun!  I am in the public brainstorming stage.  Some area
 
 Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  Effective organization is an ongoing process as well.
 
+Currently, topic modeling, tf-idf, sentiment analysis and could all beenfit from custom stopword lists and dictionaries.  The narrow focus of the maritime business journals requires that we remove many of the domain specific vocabulary to discover more nuance and meaning using the DH tools I've tried so far.  Likewise, testing training models for transformer based topic modeling will certainly improve results.  The cursory examples hown here uses a 'default' light weight model that has no specific relevance to these corpora.
+
 ## Acknowledgments
 
 The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)
@@ -91,16 +93,21 @@ If we simply visualize by publication date, it looks as if the total word counts
 
 ## Sentiment Analysis
 
-Show the change in sentiment over time relevant to known and unknown events.  Compare sentiment changes in time of the two publications.
+I try to find the change in sentiment over time relevant to known and unknown events.  This is the first time I've used the pattern package for sentiment analysis.  I was finally prompted to investigate the records from 1904 to find that there was no text for several months.  These entries were given the lowest possible polarity score, and the outliers obscured the rest of the data.  
+![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
 
-UNIX timestamps...  "issue_date":-2398032000000
-Editing the tree.py file of the pattern package?
+After removing those records, we get a more meaningful representation of the sentiment across the publbication history.  It seems like sentiment becomes more erratic leading up to WW1, and declines during the war, and then recovers quite dramatically during the roraing 20s, only to decline again during the Great Depression.  All this seems expected.  
+![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
 
-![pattern package sentiment analysis](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
+Fact and opinion thresholds need to be adjusted.  As a busniess journal, the defaul setting define everything as fact.
+
+The first time I exported the json, I forgot that the default datetime is a UNIX timestamp: "issue_date":-2398032000000.   :)
+
+Side note:  I had to fix some errors in the tree.py file of the pattern package.  Not sure if this is a known problem with this distribution?
 
 The pattern package has a host of other capabilites, including web scraping and API interactions, text processing, machine learning tools for text classification, training and evaluating models, data visualization and network analysis.  It could be interesting to build a pipeline for EDA of text corpora using just this package and its data structures.
 
-## Topic Modeling and tf-idf
+## Topic Modeling
 
 This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis shows some clustering that may indicate a lack of effective modeling.  The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
 
@@ -171,7 +178,15 @@ Topic 32: 32_co_new_york_city
 Topic 33: 33_feet_company_marine_lake
 ```
 
+## TD-IDF
 
+Using TD-IDF to identify words that are most relevant to the Marine Review Corpus once again reveals the need for custom stop words.  The [script](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/tf_idf.ipynb) I used was adapted from from [Kavita Ganesan's freeCodeCamp lesson.](https://www.freecodecamp.org/news/how-to-extract-keywords-from-text-with-tf-idf-and-pythons-scikit-learn-b2a0f3d7e667/)
+
+YOu can see in this quick bar graph of terms with the top TF_IDF scores that there are some excellent candidates for the stop word list...  
+
+![pattern package sentiment analysis](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/kw_bar_chart.png?raw=true)
+
+CSV file containing issue_date and keywords for each issue of the Marine Review: [https://github.com/LibraryBeales/marinemarine/blob/main/keywords/marine_review_tfidf_keywords.csv](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/marine_review_tfidf_keywords.csv)
 
 ## Entity Recognition
 
