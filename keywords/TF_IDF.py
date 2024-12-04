@@ -124,6 +124,8 @@ feature_names=cv.get_feature_names_out()
 
 # get the document that we want to extract keywords from
 docs_test = json_data['fulltext'].tolist()
+docs_date = json_data['issue_date'].tolist()  
+docs_fulltext = json_data['fulltext'].tolist()
 doc=docs_test[0]
 
 #generate tf-idf for the given document
@@ -136,10 +138,10 @@ sorted_items=sort_coo(tf_idf_vector.tocoo())
 keywords=extract_topn_from_vector(feature_names,sorted_items,10)
 
 # now print the results
-print("\n=====Title=====")
-print(docs_title[0])
-print("\n=====Body=====")
-print(docs_body[0])
+print("\n=====Date=====")
+print(docs_date[0])
+print("\n=====Text=====")
+print(docs_fulltext[0])
 print("\n===Keywords===")
 for k in keywords:
     print(k,keywords[k])
@@ -160,10 +162,10 @@ def get_keywords(idx):
 
 def print_results(idx,keywords):
     # now print the results
-    print("\n=====Title=====")
-    print(docs_title[idx])
-    print("\n=====Body=====")
-    print(docs_body[idx])
+    print("\n=====Date=====")
+    print(docs_date[idx])
+    print("\n=====Text=====")
+    print(docs_fulltext[idx])
     print("\n===Keywords===")
     for k in keywords:
         print(k,keywords[k])
