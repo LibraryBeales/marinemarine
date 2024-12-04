@@ -17,7 +17,6 @@ json_data_df = pd.DataFrame(json_data)
 #place_names = pd.read_csv("mapping/placenames.csv", header=None, names=["place_name"])  #no header in our csv, so I needed to assign one here.  Could remake the csv with a header.
 #places = place_names['place_name'].tolist()
 
-#Load the CSV
 place_names = pd.read_csv("mapping/portstest.csv", header=None, names=["place_name"])
 place_names['place_name'] = place_names['place_name'].str.strip()  # Remove extra spaces
 places = place_names['place_name'].tolist()

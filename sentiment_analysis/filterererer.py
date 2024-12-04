@@ -1,3 +1,6 @@
+import pandas as pd
+import json
+
 json_file = input("Enter the path to the JSON file: ")
 json_data = pd.read_json(json_file, lines=True)
 
