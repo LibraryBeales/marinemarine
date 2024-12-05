@@ -19,7 +19,7 @@ The extensive digitization and OCR work that has made this project possible was 
 
 These steps could reliably be combined into one script.  The processes are separated out here because this project is intended for use in teaching introductory DH workshops so I am breaking it down into more explicit steps and saving each output as a new json file to demonstrate the process and outputs more explicitly.
 
-Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage retursn, multiple spaces, and replace them all with a single space.  This script also converts all text to lowercase.  (Need to separate the `text.lower()` function for entity recognition.)  This script could use some more functions for cleaning various unicode characters, etc.
+Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage retursn, multiple spaces, and replace them all with a single space.  This script also converts all text to lowercase.  (Need to separate the `text.lower()` function for entity recognition.)  This script could absolutely use some more functions for cleaning various unicode characters, etc.
 
 Step 2:  Use `cleaning\date_format_userinput.py` to reformat the date field to YYYY-MM-DD.
 
@@ -187,7 +187,7 @@ Topic 32: 32_co_new_york_city
 Topic 33: 33_feet_company_marine_lake
 ```
 
-## TD-IDF
+## TF-IDF
 
 Using TD-IDF to identify words that are most relevant to the Marine Review Corpus once again reveals the need for custom stop words.  The [script](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/tf_idf.ipynb) I used was adapted from from [Kavita Ganesan's freeCodeCamp lesson.](https://www.freecodecamp.org/news/how-to-extract-keywords-from-text-with-tf-idf-and-pythons-scikit-learn-b2a0f3d7e667/)
 
