@@ -3,15 +3,17 @@
 These files support the exploration of the Marine Record (1878 – August 1902, Total words, excluding stopwords: 10648342) and Marine Review (March 1890-October 1935, 
 Total words, excluding stopwords: 26894616) shipping buiness journals using a variety of digital scholarship tools and techniques. 
 
-This project has just begun!  I am in the public brainstorming stage.  Some areas of work may be incomplete, confusing, or downright wrong!  These exploration are meant to provide direction for close reading, questions to ask, details to explore.  I am generally unfamiliar with the corpus and the maritime history of the Great Lakes.  This is meant to be a process of quickly iterating through methods of distant reading to find areas of interest, questions of significance, intriguing details, etc.  
+I am generally unfamiliar with the corpus and the maritime history of the Great Lakes.  This is meant to be a process of quickly iterating through methods of distant reading to find areas of interest, questions of significance, intriguing details, etc.  
 
-Each process and the relevant visualizations, if any, can be found in its own directory; OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  Effective organization is an ongoing process as well.
+This project has just begun!  I am in the public brainstorming stage.  Some areas of work may be incomplete, confusing, or downright wrong!  These exploration are meant to provide direction for close reading, asking questions, exploring details.  
 
-Currently, topic modeling, tf-idf, sentiment analysis and could all beenfit from custom stopword lists and dictionaries.  The narrow focus of the maritime business journals requires that we remove many of the domain specific vocabulary to discover more nuance and meaning using the DH tools I've tried so far.  Likewise, testing training models for transformer based topic modeling will certainly improve results.  The cursory examples hown here uses a 'default' light weight model that has no specific relevance to these corpora.
+Each process and the relevant visualizations, if any, can be found in its own directory on the [github repo](https://github.com/LibraryBeales/marinemarine); OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  Effective organization is an ongoing process as well.
+
+Currently, topic modeling, tf-idf, sentiment analysis and could all benefit from custom stopword lists and dictionaries.  The narrow focus of the maritime business journals requires that we remove many of the domain specific vocabulary to discover more nuance and meaning using the DH methods tried so far.  Likewise, testing training models for transformer based topic modeling will certainly improve results.  The cursory examples hown here uses a 'default' light weight model that has no specific relevance to these corpora.
 
 ## Acknowledgments
 
-The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)
+The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)  I am exceptionally grateful that he was willing to sahre his text files with me. 
 
 ## Cleaning the Text
 
@@ -27,13 +29,15 @@ Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has
 
 Cleaning and processing data can reveal interesting anomalies, so error handling should include reporting errors, not just ensuring the script doesn't crash.
 
-In the Marine Review, 24 entries in March 1914 have no day in the date field, and when looking at the josn file, it appears to be a special issue (actually called a supplement) about "The Greatest Storm in Lake History" The 'error' in the date format has shown us a part of the publication that may be of special interest.  As someone who is using the EDA of this collection to learn about Great Lakes Maritime history, the discovery of a special issue in the archive is certainly an exciting one. 
+In the Marine Review, 24 entries in March 1914 have no day in the date field, and when looking at the json file, it appears to be a special issue (actually called a supplement) about "The Greatest Storm in Lake History" The 'error' in the date format has shown us a part of the publication that may be of special interest.  As someone who is using the EDA of this collection to learn about Great Lakes Maritime history, the discovery of a special issue in the archive is certainly an exciting one. 
 
 ```print(f"Error: The date '{issue_date}' in entry {entry} does not match the expected format '%Y%m%d'.")```
 
+There are real posibilities for using LLMs to clean OCR if we can find or train relevant models.  
+
 ## Word Counts Over Time
 
-The script `words_over_time.py` will prompt the user for a json file that has been cleaned and has the 'issue_date' and 'fulltext' fields in each entry. The script will then ask for terms of interest.  The script will loop though each entry, splitting the text into individual words and create nested dictionaries with counts for each selected word.  The data at that point will look something like this.
+The script `words_over_time.py` will prompt the user for a json file that has been cleaned and has the 'issue_date' and 'fulltext' fields in each entry. The script will then ask for terms of interest and loop though each entry, splitting the text into individual word to create nested dictionaries with counts for each selected word.  The data at that point will look something like this.
 
 ```
 word_counts_by_date = {
@@ -49,7 +53,7 @@ Our initial visualization shows a high level of granularity, but is a bit diffic
 We can try to add a smoothing function that takes a rolling average of a month instead of showing the total for each issue of the Marine Record separately.  Now it is a bit easier to see the trends, but the missing data is a bit harder to identify.  I wonder why the mentions of iron dropped off in 1892.  Did shipping become more diversified as other commodities rose in importance?  Or was the shipment of iron less noteworthy simply because little was changing?  Did the Marine Record begin covering mostly iron shipping and diversify its attention? 
 ![coal, iron, oil, steel](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp4.png?raw=true)
 
-Divergence of the terms corn, wheat and grain at the end of the 19th century could be representative of a grwoth in grain shipping, or it could be due to a change in nomenclature at that time that groups corn, wheat and others together under one term.  It may represent just a change in the journal's vocabulary, and not an economic event.  These are the fun kinds of questions that can be quickly found during exploratory analysis of a text corpus.
+Divergence of the terms corn, wheat and grain at the end of the 19th century could be representative of a growth in grain shipping, or it could be due to a change in nomenclature at that time that groups corn, wheat and others together under one term.  It may represent just a change in the journal's vocabulary, and not an economic event.  These are the fun kinds of questions that can be quickly found during exploratory analysis of a text corpus.
 ![grain, corn, wheat graph](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp3.png?raw=true)
 
 TO DO: 
@@ -65,11 +69,12 @@ Also, I initially had the script count all the words in the corpus before select
 
 Instead of asking for user input, we can show the most mentioned terms from a list of terms in a csv file.  This is very similar to the previous words over time visualization, with input differences.  The csv of place names is currently just the name data.  However, more interesting and complex visualizations and EDA using place names could be available using csv files with census data, industry data, etc., combining that with the Marine Record and Marine Review corpora.
 
-Here we can see place names move together and maintain relateive frequency.  This suggests a few things.  First, that the realtive importance of the Lake Erie ports didn't change much over the course of the Marine Record's publication.  Second, that the publication may include some regular tables of departures/arriveials/etc that constitute the majority of place names used in the publication, creating the consistent movement across terms.  
+Here we can see place names move together and maintain relateive frequency.  This suggests a few things.  First, that the realtive importance of the Lake Erie ports didn't change much over the course of the Marine Record's publication.  Second, that the publication may include some regular tables of departures/arriveials/etc. that constitute the majority of place names used in the publication, creating the consistent movement across terms.  
+
 ![placename graph 2](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames2.png?raw=true)
 ![placename graph 3](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames3.png?raw=true)
 
-If we explore the Marine Review, we discover something very interesting.  A set of place names visualized over the course of the publicaiton shows a marked drop off in the frequency of all place names around 1908-1909.  If we then look at the overall word count, we can see a simlar drop at the same time across all words.  Diving into the raw json data a bit, we can see that publication went from weekly to monthly earlt in 1909, but word count per issue did not quadruple, and in many cases a monthly issue was similar in size to a weekly issue. 
+If we explore the Marine Review, we discover something very interesting.  A set of place names visualized over the course of the publicaiton shows a marked drop off in the frequency of all place names around 1908-1909.  If we then look at the overall word count, we can see a similar drop at the same time across all words.  Diving into the raw json data a bit, we can see that publication went from weekly to monthly early in 1909, but word count per issue did not quadruple, and in many cases a monthly issue was similar in size to a weekly issue. 
 
 Our EDA visualizations have revealed a change in publishing schedule!
 
@@ -87,21 +92,23 @@ placename_counts_df['year_month'] = placename_counts_df['year_month'].astype(str
 monthly_counts = top_places_separated.groupby(['year_month', 'place'])['count'].sum().unstack(fill_value=0)
 ```
 
-If we simply visualize by publication date, it looks as if the total word counts of the issues is steadily increasing, and the only clue to us that something has changed is the sudden decrease in density of the data points, which is not nearly as obvious at first glance.  
+If we simply visualize by publication date, it looks as if the total word counts of the issues is steadily increasing, and the only clue that something has changed is the sudden decrease in density of the data points, which is not nearly as obvious at first glance.  
 
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp7.png?raw=true)
 
 ## Sentiment Analysis
 
-I try to find the change in sentiment over time relevant to known and unknown events.  This is the first time I've used the pattern package for sentiment analysis.  I was finally prompted to investigate the records from 1904 to find that there was no text for several months.  These entries were given the lowest possible polarity score, and the outliers obscured the rest of the data.  
+I attempt find the change in sentiment over time relevant to known and unknown events.  This is the first time I've used the pattern package for sentiment analysis.  I was finally prompted to investigate the records from 1904 to find that there was no text for several months.  These entries were given the lowest possible polarity score, and the outliers obscured the rest of the data.  
+
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
 
-After removing those records, we get a more meaningful representation of the sentiment across the publbication history.  It seems like sentiment becomes more erratic leading up to WW1, and declines during the war, and then recovers quite dramatically during the roraing 20s, only to decline again during the Great Depression.  All this seems expected.  
+After removing those records, we get a more meaningful representation of the sentiment across the publication history.  It seems like sentiment becomes more erratic leading up to WW1, and declines during the war, and then recovers quite dramatically during the roaring 20s, only to decline again during the Great Depression.  All this seems expected.  
+
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent2.png?raw=true)
 
-Fact and opinion thresholds need to be adjusted.  As a busniess journal, the defaul setting define everything as fact.
+Selecting specific time periods using economic history markers and adding domain specfic terms to the senitment dictionary would be good next steps.  Fact and opinion thresholds also need to be adjusted.  As a busniess journal, the default setting define everything as fact.
 
-The first time I exported the json, I forgot that the default datetime is a UNIX timestamp: "issue_date":-2398032000000.   :)
+The first time I exported the json, I forgot that the default datetime is a UNIX timestamp: "issue_date":-2398032000000. 
 
 Side note:  I had to fix some errors in the tree.py file of the pattern package.  Not sure if this is a known problem with this distribution?
 
@@ -109,7 +116,9 @@ The pattern package has a host of other capabilites, including web scraping and 
 
 ## Topic Modeling
 
-This is an older method is using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualization created by pyLDAvis shows some clustering that may indicate a lack of effective modeling.  The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
+The first example is an older method using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualizations created by pyLDAvis show some clustering that, combined with the undifferetiated content of the topics, indicates a lack of effective modeling.  
+
+The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
 
 The Marine Record and Marine Review are both narrow in scope, so more time tuning and training will likely be required for effective modeling. But there are also obvious problems with cleaning the text, numerals, adding stop words that characterize the domain, etc., etc.   Visualizing the relevance of topics over time will certainly be more interseting in terms of exploring the history of this publication.
 
@@ -182,7 +191,7 @@ Topic 33: 33_feet_company_marine_lake
 
 Using TD-IDF to identify words that are most relevant to the Marine Review Corpus once again reveals the need for custom stop words.  The [script](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/tf_idf.ipynb) I used was adapted from from [Kavita Ganesan's freeCodeCamp lesson.](https://www.freecodecamp.org/news/how-to-extract-keywords-from-text-with-tf-idf-and-pythons-scikit-learn-b2a0f3d7e667/)
 
-YOu can see in this quick bar graph of terms with the top TF_IDF scores that there are some excellent candidates for the stop word list...  
+You can see in this quick bar graph of terms with the top TF_IDF scores that there are some excellent candidates for the stop word list...  
 
 ![pattern package sentiment analysis](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/kw_bar_chart.png?raw=true)
 
@@ -190,7 +199,7 @@ CSV file containing issue_date and keywords for each issue of the Marine Review:
 
 ## Entity Recognition
 
-Holding spoace for something using SpaCy.
+Holding spaCe for something using SpaCy.
 
 ## Authors
 
