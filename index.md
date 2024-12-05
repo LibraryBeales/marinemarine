@@ -97,7 +97,7 @@ I try to find the change in sentiment over time relevant to known and unknown ev
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
 
 After removing those records, we get a more meaningful representation of the sentiment across the publbication history.  It seems like sentiment becomes more erratic leading up to WW1, and declines during the war, and then recovers quite dramatically during the roraing 20s, only to decline again during the Great Depression.  All this seems expected.  
-![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent1.png?raw=true)
+![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent2.png?raw=true)
 
 Fact and opinion thresholds need to be adjusted.  As a busniess journal, the defaul setting define everything as fact.
 
