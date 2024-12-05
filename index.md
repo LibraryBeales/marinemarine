@@ -189,7 +189,7 @@ Topic 33: 33_feet_company_marine_lake
 
 ## TF-IDF
 
-Using TD-IDF to identify words that are most relevant to the Marine Review Corpus once again reveals the need for custom stop words.  The [script](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/tf_idf.ipynb) I used was adapted from from [Kavita Ganesan's freeCodeCamp lesson.](https://www.freecodecamp.org/news/how-to-extract-keywords-from-text-with-tf-idf-and-pythons-scikit-learn-b2a0f3d7e667/)
+Using TF-IDF to identify words that are most relevant to the Marine Review Corpus once again reveals the need for custom stop words.  The [script](https://github.com/LibraryBeales/marinemarine/blob/main/keywords/tf_idf.ipynb) I used was adapted from from [Kavita Ganesan's freeCodeCamp lesson.](https://www.freecodecamp.org/news/how-to-extract-keywords-from-text-with-tf-idf-and-pythons-scikit-learn-b2a0f3d7e667/)
 
 You can see in this quick bar graph of terms with the top TF_IDF scores that there are some excellent candidates for the stop word list...  
 
