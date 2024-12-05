@@ -13,7 +13,7 @@ Currently, topic modeling, tf-idf, sentiment analysis and could all benefit from
 
 ## Acknowledgments
 
-The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)  I am exceptionally grateful that he was willing to sahre his text files with me. 
+The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  I am exceptionally grateful for all his efforts to find and digitize these materials and hhis willingness to share them. [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)  
 
 ## Cleaning the Text
 
