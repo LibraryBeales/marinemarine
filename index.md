@@ -106,7 +106,7 @@ After removing those records, we get a more meaningful representation of the sen
 
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent2.png?raw=true)
 
-Selecting specific time periods using economic history markers and adding domain specfic terms to the senitment dictionary would be good next steps.  Fact and opinion thresholds also need to be adjusted.  As a busniess journal, the default setting define everything as fact.
+Selecting specific time periods using economic history markers and adding domain specfic terms to the senitment dictionary would be good next steps.  Fact and opinion thresholds also need to be adjusted.  As a business journal, the default setting define everything as fact.
 
 The first time I exported the json, I forgot that the default datetime is a UNIX timestamp: "issue_date":-2398032000000. 
 
