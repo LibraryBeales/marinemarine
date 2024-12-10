@@ -1,7 +1,7 @@
 # The Marine Record and The Marine Review: DH Exploratory Analysis
 
-These files support the exploration of the Marine Record (1878 – August 1902, Total words, excluding stopwords: 10648342) and Marine Review (March 1890-October 1935, 
-Total words, excluding stopwords: 26894616) shipping business journals using a variety of digital scholarship tools and techniques. 
+These files support the exploration of the Marine Record (1878 – August 1902, Total words, excluding stop words: 10648342) and Marine Review (March 1890-October 1935, 
+Total words, excluding stop words: 26894616) shipping business journals using a variety of digital scholarship tools and techniques. 
 
 I am generally unfamiliar with the corpus and the maritime history of the Great Lakes.  This is meant to be a process of quickly iterating through methods of distant reading to find areas of interest, questions of significance, intriguing details, etc.  
 
@@ -9,21 +9,21 @@ This project has just begun!  I am in the public brainstorming stage.  Some area
 
 Each process and the relevant visualizations, if any, can be found in its own directory on the [github repo](https://github.com/LibraryBeales/marinemarine); OCR, text cleaning and processing, topic modeling, entity recognition, geocoding etc.  Effective organization is an ongoing process as well.
 
-Currently, topic modeling, tf-idf, sentiment analysis and could all benefit from custom stopword lists and dictionaries.  The narrow focus of the maritime business journals requires that we remove many of the domain specific vocabulary to discover more nuance and meaning using the DH methods tried so far.  Likewise, testing training models for transformer based topic modeling will certainly improve results.  The cursory examples hown here uses a 'default' light weight model that has no specific relevance to these corpora.
+Currently, topic modeling, tf-idf, sentiment analysis and could all benefit from custom stop word lists and dictionaries.  The narrow focus of the maritime business journals requires that we remove many of the domain specific vocabulary to discover more nuance and meaning using the DH methods tried so far.  Likewise, testing training models for transformer based topic modeling will certainly improve results.  The cursory examples shown here uses a 'default' light weight model that has no specific relevance to these corpora.
 
 ## Acknowledgments
 
-The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  I am exceptionally grateful for all his efforts to find and digitize these materials and hhis willingness to share them. [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)  
+The extensive digitization and OCR work that has made this project possible was done by Walter Lewis.  Images of these publications and advanced search tools for these and many other Great Lakes historical resources can be found at his site.  I am exceptionally grateful for all his efforts to find and digitize these materials and his willingness to share them. [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca)  
 
 ## Cleaning the Text
 
 These steps could reliably be combined into one script.  The processes are separated out here because this project is intended for use in teaching introductory DH workshops so I am breaking it down into more explicit steps and saving each output as a new json file to demonstrate the process and outputs more explicitly.
 
-Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage retursn, multiple spaces, and replace them all with a single space.  This script also converts all text to lowercase.  (Need to separate the `text.lower()` function for entity recognition.)  This script could absolutely use some more functions for cleaning various unicode characters, etc.
+Step 1: Run `cleaning\cleaning_userinput.py` to remove line breaks, carriage returns, multiple spaces, and replace them all with a single space.  This script also converts all text to lowercase.  (Need to separate the `text.lower()` function for entity recognition.)  This script could absolutely use some more functions for cleaning various unicode characters, etc.
 
 Step 2:  Use `cleaning\date_format_userinput.py` to reformat the date field to YYYY-MM-DD.
 
-Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the mergerd `full_text` fields for this date.  
+Step 3:  Use `cleaning\merge_by_date_json.py` to create a new json file that has all the `full_text` fields merged for each date.  The original files have separate json records for each page, as they were being used as part of the web interface at [https://images.maritimehistoryofthegreatlakes.ca](https://images.maritimehistoryofthegreatlakes.ca) where images of the original pages can be viewed.  For our purposes we don't need each page as a separate record, so this script creates one json record for each issue of the Marine Review/Marine Record where all the `full-text` fields are merged, `issue`, `issue_date`, and `issue_id` are maintained and the `page_id` field is removed.  There is another option for just creating a dictionary where the key is the `issue_date` and the value is the merged `full_text` fields for this date.  
 
 *** Need to merge `full_text` on `issue` AND `issue_date` to avoid errors in the event that the Marine Record and the Marine Review were published on the same day.  Right now I am working on the two collections separately, but this will come up in the future. ***
 
@@ -45,7 +45,7 @@ word_counts_by_date = {
     datetime(1883, 3, 31): {'oil': 1, 'steam': 2},
 }
 ```
-The nested dictionaries are then flattened into a list of dictionaries, converted to a pandas dataframe, and visualized using matplotlib.  Updating these visualization to plotly will improve aesthtics, control, and provide interactivity options, but for now `plt()` will have to suffice.
+The nested dictionaries are then flattened into a list of dictionaries, converted to a pandas dataframe, and visualized using matplotlib.  Updating these visualization to plotly will improve aesthetics, control, and provide interactivity options, but for now `plt()` will have to suffice.
 
 Our initial visualization shows a high level of granularity, but is a bit difficult to read.  It does reveal that there are a couple years of what appears to be missing data.  I chose several commodities that I thought might be relevant to these publications in this time period. 
 ![coal, iron, oil, steel](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp5.png?raw=true)
@@ -57,7 +57,7 @@ Divergence of the terms corn, wheat and grain at the end of the 19th century cou
 ![grain, corn, wheat graph](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/wordcountsexp3.png?raw=true)
 
 TO DO: 
-- Add error checking so the script doesn't crash if there is a mising key in a json entry.
+- Add error checking so the script doesn't crash if there is a missing key in a json entry.
 - Add a request for user input for smoothing.
 - Currently the script ends when you close the visualization.  I'd like it to prompt the user as to whether they'd like to generate additional visualizations.
 - Convert the entire visualization piece to plotly so there are interactive elements, such as drop downs for selected words, and the entire thing is more aesthetically pleasing and consistent.
@@ -69,12 +69,12 @@ Also, I initially had the script count all the words in the corpus before select
 
 Instead of asking for user input, we can show the most mentioned terms from a list of terms in a csv file.  This is very similar to the previous words over time visualization, with input differences.  The csv of place names is currently just the name data.  However, more interesting and complex visualizations and EDA using place names could be available using csv files with census data, industry data, etc., combining that with the Marine Record and Marine Review corpora.
 
-Here we can see place names move together and maintain relateive frequency.  This suggests a few things.  First, that the realtive importance of the Lake Erie ports didn't change much over the course of the Marine Record's publication.  Second, that the publication may include some regular tables of departures/arriveials/etc. that constitute the majority of place names used in the publication, creating the consistent movement across terms.  
+Here we can see place names move together and maintain relative frequency.  This suggests a few things.  First, that the relative importance of the Lake Erie ports didn't change much over the course of the Marine Record's publication.  Second, that the publication may include some regular tables of departures/arrivals/etc. that constitute the majority of place names used in the publication, creating the consistent movement across terms.  
 
 ![placename graph 2](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames2.png?raw=true)
 ![placename graph 3](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/placenames3.png?raw=true)
 
-If we explore the Marine Review, we discover something very interesting.  A set of place names visualized over the course of the publicaiton shows a marked drop off in the frequency of all place names around 1908-1909.  If we then look at the overall word count, we can see a similar drop at the same time across all words.  Diving into the raw json data a bit, we can see that publication went from weekly to monthly early in 1909, but word count per issue did not quadruple, and in many cases a monthly issue was similar in size to a weekly issue. 
+If we explore the Marine Review, we discover something very interesting.  A set of place names visualized over the course of the publication shows a marked drop off in the frequency of all place names around 1908-1909.  If we then look at the overall word count, we can see a similar drop at the same time across all words.  Diving into the raw json data a bit, we can see that publication went from weekly to monthly early in 1909, but word count per issue did not quadruple, and in many cases a monthly issue was similar in size to a weekly issue. 
 
 Our EDA visualizations have revealed a change in publishing schedule!
 
@@ -106,21 +106,21 @@ After removing those records, we get a more meaningful representation of the sen
 
 ![word counts over time](https://github.com/LibraryBeales/marinemarine/blob/main/graphics/patternsent2.png?raw=true)
 
-Selecting specific time periods using economic history markers and adding domain specfic terms to the senitment dictionary would be good next steps.  Fact and opinion thresholds also need to be adjusted.  As a business journal, the default setting define everything as fact.
+Selecting specific time periods using economic history markers and adding domain specific terms to the sentiment dictionary would be good next steps.  Fact and opinion thresholds also need to be adjusted.  As a business journal, the default setting define everything as fact.
 
 The first time I exported the json, I forgot that the default datetime is a UNIX timestamp: "issue_date":-2398032000000. 
 
 Side note:  I had to fix some errors in the tree.py file of the pattern package.  Not sure if this is a known problem with this distribution?
 
-The pattern package has a host of other capabilites, including web scraping and API interactions, text processing, machine learning tools for text classification, training and evaluating models, data visualization and network analysis.  It could be interesting to build a pipeline for EDA of text corpora using just this package and its data structures.
+The pattern package has a host of other capabilities, including web scraping and API interactions, text processing, machine learning tools for text classification, training and evaluating models, data visualization and network analysis.  It could be interesting to build a pipeline for EDA of text corpora using just this package and its data structures.
 
 ## Topic Modeling
 
 The first example is an older method using gensim for LDA, and not the newer options that include transformers, such as BERTopic and Top2Vec. Interactive visualizations created by pyLDAvis show some clustering that, combined with the undifferetiated content of the topics, indicates a lack of effective modeling.  
 
-The BERTopic model example just uses a lightweight model, not necesarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
+The BERTopic model example just uses a lightweight model, not necessarily a model appropriate for this collection.  I'm just beginning to explore this topic modeling option and I have a lot to learn.  Topics from this are more numerous, but not much more diverse.  Much more can be done to improve this as well, I'm sure.  I have a lot to learn about transformers in topic modeling.
 
-The Marine Record and Marine Review are both narrow in scope, so more time tuning and training will likely be required for effective modeling. But there are also obvious problems with cleaning the text, numerals, adding stop words that characterize the domain, etc., etc.   Visualizing the relevance of topics over time will certainly be more interseting in terms of exploring the history of this publication.
+The Marine Record and Marine Review are both narrow in scope, so more time tuning and training will likely be required for effective modeling. But there are also obvious problems with cleaning the text, numerals, adding stop words that characterize the domain, etc., etc.   Visualizing the relevance of topics over time will certainly be more interesting in terms of exploring the history of this publication.
 
 Lots to be done here.
 
