@@ -1,7 +1,7 @@
 # The Marine Record and The Marine Review: DH Exploratory Analysis
 
 These files support the exploration of the Marine Record (1878 – August 1902, Total words, excluding stopwords: 10648342) and Marine Review (March 1890-October 1935, 
-Total words, excluding stopwords: 26894616) shipping buiness journals using a variety of digital scholarship tools and techniques. 
+Total words, excluding stopwords: 26894616) shipping business journals using a variety of digital scholarship tools and techniques. 
 
 I am generally unfamiliar with the corpus and the maritime history of the Great Lakes.  This is meant to be a process of quickly iterating through methods of distant reading to find areas of interest, questions of significance, intriguing details, etc.  
 
